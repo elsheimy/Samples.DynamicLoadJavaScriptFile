@@ -1,0 +1,40 @@
+<html>
+
+<head>
+</head>
+
+<body>
+  <h2>Lazy-Loading JavaScript Files</h2>
+
+  <button id="scriptElementButton">Load script using script element</button>
+  <button id="xhrButton">Load script using XHR call</button>
+  <button id="ajaxButton">Load script using jQuery AJAX call</button>
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script type="text/javascript" src="script.js"></script>
+  <script type="text/javascript">
+    document.getElementById('scriptElementButton').onclick = function () {
+      require('remote.js', function () {
+        sayHello('Mohammad');
+      });
+      console.log('The call is made asynchronously');
+    };
+
+    document.getElementById('xhrButton').onclick = function () {
+      requireXhr('remote.js', function () {
+        sayHello('Mohammad'); // this will thnow an error
+      });
+      console.log('The call is made asynchronously');
+    };
+
+    document.getElementById('ajaxButton').onclick = function () {
+      requireAjax('remote.js', function () {
+        sayHello('Mohammad');
+      });
+      console.log('The call is made asynchronously');
+    };
+  </script>
+
+</body>
+
+</html>
